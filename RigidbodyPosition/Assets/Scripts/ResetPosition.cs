@@ -24,13 +24,11 @@ public class ResetPosition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
         ZeroVelocityOnChildRigidbodies();
         if (_useRigidbodyAPI)
             _rigidbody.position = _startPosition;
         else
             transform.position = _startPosition;            
         _rigidbody.velocity = Vector3.zero;
-        //_rigidbody.useGravity = false;
     }
 }
