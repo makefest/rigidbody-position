@@ -14,8 +14,9 @@ public class ResetPosition : MonoBehaviour
         _startPosition = _rigidbody.position;
     }
 
-    void ZeroVelocityOnChildRigidbodies()
+    void ZeroVelocityOnRigidbodies()
     {
+        _rigidbody.velocity = Vector3.zero;
         foreach (var rigidbody in GetComponentsInChildren<Rigidbody>())
         {
             rigidbody.velocity = Vector3.zero;
@@ -24,11 +25,10 @@ public class ResetPosition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ZeroVelocityOnChildRigidbodies();
         if (_useRigidbodyAPI)
             _rigidbody.position = _startPosition;
         else
             transform.position = _startPosition;            
-        _rigidbody.velocity = Vector3.zero;
+        ZeroVelocityOnRigidbodies();
     }
 }
